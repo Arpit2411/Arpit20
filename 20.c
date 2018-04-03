@@ -41,4 +41,35 @@ int main()
 	{
 		printf("Conditions are not satisfied so system is in unsafe state,there are chances of dead lock\n");
 	}
+		while(1)
+		{
+			count=0;
+			for(i=0;i<q;i++)
+			{
+				if(finish[i]==0)
+				{
+					if(resource>0)
+					{
+					allot[i]=allot[i]+1;
+					resource=resource-1;
+					printf("Process %d + 1\n",i+1);
+					}
+					if(allot[i]==process[i])
+					{
+						printf("Process %d completed it execution\n",i+1);
+						finish[i]=1;
+						resource=resource+process[i];
+						printf("Process %d - %d \n",i+1,process[i]);
+					}
+				}
+			}
+			for(i=0;i<q;i++)
+			{
+				if(finish[i]==1)
+				count++;
+			}
+			if(count==q)
+			break;
+		}
+		printf("No Dead Lock");
 }
